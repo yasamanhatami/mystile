@@ -14,7 +14,7 @@ class Post(models.Model):
     created_date=models.DateTimeField(auto_now_add=True)
     updated_date=models.DateTimeField(auto_now=True)#2024-03-30 11:10:56.530638
     class Meta:
-        ordering=['-created_date']
+        ordering=['-published_date']
     def __str__(self):
         return '{}-{}'.format(self.title, self.id)
 
