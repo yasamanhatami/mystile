@@ -8,7 +8,6 @@ def blog_view(request):
     return render(request,'blog/blog-home.html',context)
 def blog_single(request,pid):
     post=get_object_or_404(Post,id=pid,status=1)
-    #if post:
     post.counted_views=post.counted_views+1
     post.save()
     context={'post':post}
