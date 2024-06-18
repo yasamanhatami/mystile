@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 # Create your models here.
 class category(models.Model):
     name=models.CharField(max_length=225)
@@ -18,6 +19,7 @@ class Post(models.Model):
     published_date=models.DateTimeField(null=True)
     created_date=models.DateTimeField(auto_now_add=True)
     updated_date=models.DateTimeField(auto_now=True)#2024-03-30 11:10:56.530638
+
     class Meta:
         ordering=['-published_date']
     def __str__(self):
