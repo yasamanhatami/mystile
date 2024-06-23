@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class category(models.Model):
     name=models.CharField(max_length=225)
-    def ___str__(self):
+    def __str__(self):
         return self.name
 
 class Post(models.Model):
@@ -27,4 +27,5 @@ class Post(models.Model):
         return '{}-{}'.format(self.title, self.id)
     #def snippets(self):
         #return self.content[100] +'...' 
+
 
