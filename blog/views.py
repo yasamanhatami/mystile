@@ -14,7 +14,7 @@ def blog_single(request,pid):
     previous_post = Post.objects.filter(id__lt=pid,published_date__lte=timezone.now(),status=1).last()
     context={'post':post,'next_post':next_post,'previous_post':previous_post}
     return render(request,'blog/blog-single.html',context)
-#def test(request,pid):
+def test(request):
     #posts=get_object_or_404(Post,id=pid)
     #context={'posts':posts}
-    #return render(request,'test.html',context)
+    return render(request,'test.html')
