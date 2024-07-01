@@ -12,11 +12,11 @@ def contact_views (request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            data = form.data.copy()
-            data['name'] = 'Unknown'
-            form.data = data
-            
-            form.save()
+            new_name = form.save(commit=False)
+            new_name.name = "Unknown"
+            new_name.save()
+            form.save_m2m()
+           
             messages.add_message(request,messages.SUCCESS,'your ticket submitted successfully')
         else:
             messages.add_message(request,messages.ERROR,'your ticket didnt submitted')
