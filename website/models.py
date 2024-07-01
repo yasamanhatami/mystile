@@ -4,7 +4,7 @@ from django.db import models
 class Cantact(models.Model):
     name=models.CharField(max_length=225)
     email=models.EmailField()
-    subject=models.CharField(max_length=225)
+    subject=models.CharField(null=True,blank=True,max_length=225)
     message=models.TextField()
     created_date=models.DateField(auto_now_add=True)
     updated_date=models.DateField(auto_now=True)
