@@ -6,10 +6,11 @@ from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 def blog_view(request,**kwargs):
     posts=Post.objects.filter(published_date__lte=timezone.now(),status=1).order_by('published_date')
     if kwargs.get('cat_name')!=None:
-        posts=Post.objects.filter(category__name=kwargs['cat_name'])
+        posts=posts.filter(category__name=kwargs['cat_name'])
     if kwargs.get('author_username')!=None:
-        posts=Post.objects.filter(author__username=kwargs['author_username'])
-    
+        posts=posts.filter(author__username=kwargs['author_username'])
+    if kwargs.get('tag_name')!=None:
+        posts=posts.filter(tags__name=kwargs['tag_name'])
     posts=Paginator(posts,3)
     try:
         page_number=request.GET.get('page')
