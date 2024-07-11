@@ -38,6 +38,7 @@ urlpatterns = [
         name="django.contrib.sitemaps.views.sitemap",
     ),
     path('robots.xml', include('robots.urls')),
+    path('summernote/', include('django_summernote.urls')),
 
 ]
 urlpatterns+= static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
