@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from blog.models import Post
+from blog.models import Post,Comment
 from django.utils import timezone
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 # Create your views here.
@@ -19,6 +19,7 @@ def blog_view(request,**kwargs):
         posts=posts.get_page(1)
     except EmptyPage:
         posts=posts.get_page(1)
+    
     context={'posts':posts}
     return render(request,'blog/blog-home.html',context)
 def blog_single(request,pid):
@@ -27,7 +28,8 @@ def blog_single(request,pid):
     post.save()
     next_post = Post.objects.filter(id__gt=pid,published_date__lte=timezone.now(),status=1).last()
     previous_post = Post.objects.filter(id__lt=pid,published_date__lte=timezone.now(),status=1).first()
-    context={'post':post,'next_post':next_post,'previous_post':previous_post}
+    comments = Comment.objects.filter(post=post.id,approved=True)
+    context={'post':post,'next_post':next_post,'previous_post':previous_post,'comments':comments}
     return render(request,'blog/blog-single.html',context)
 #def test(request):
     #posts=get_object_or_404(Post,id=pid)
