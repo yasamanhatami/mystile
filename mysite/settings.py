@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'robots',
     'taggit',
     'website.apps.WebsiteConfig',
-    'blog'
+    'blog',
+    'accounts',
 ]
 
 SITE_ID = 2
