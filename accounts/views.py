@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.contrib.auth import authenticate,login,logout
-from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import SignUpForm
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.views import (PasswordResetView)
 # Create your views here.
 def login_view(request):
     if not request.user.is_authenticated:
@@ -48,3 +51,7 @@ def signup_view(request):
         context = {'form': form}
         return render (request,'accounts/signup.html',context)
     return redirect('/')
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'accounts/password_reset.html'
+    email_template_name = 'accounts/password_reset_email.html'
+    success_url = reverse_lazy('/')

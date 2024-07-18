@@ -39,10 +39,14 @@
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
 
     </form>
+    <a href="{%url 'accounts:signup'%}" class="link-secondary text-decoration-none">Create new account</a>
+    ,
+    <a href="{% url 'accounts:password_reset'%}" class="link-secondary text-decoration-none">Forgot password</a>
     {% if messages %}
     {% for message in messages %}
       <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
     {% endfor %}
     {% endif %}
+
   </body>
 </html>
