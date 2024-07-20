@@ -8,8 +8,8 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import SignUpForm
-from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.views import (PasswordResetView)
+#from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.views import (PasswordResetCompleteView,PasswordResetConfirmView,PasswordResetDoneView,PasswordResetView)
 # Create your views here.
 def login_view(request):
     if not request.user.is_authenticated:
@@ -62,3 +62,17 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
                       "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = reverse_lazy('registration:password_reset_done')
 '''
+class PasswordReset(PasswordResetView):
+    template_name="registration/password_reset_form.html"
+    success_url=reverse_lazy("accounts:password_reset_done")
+
+class PasswordResetDone(PasswordResetDoneView):
+    template_name="registration/password_reset_done.html"
+    success_url=reverse_lazy("accounts:password_reset_confirm")
+
+class PasswordResetConfirm(PasswordResetConfirmView):
+    template_name="registration/password_reset_confirm.html"
+    success_url=reverse_lazy("accounts:password_reset_complete")
+
+class PasswordResetComplete(PasswordResetCompleteView):
+    template_name="registration/password_reset_complete.html"
