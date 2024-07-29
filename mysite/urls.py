@@ -22,6 +22,7 @@ from django.contrib.sitemaps.views import sitemap
 from website.sitemaps import StaticViewSitemap
 from blog.sitemaps import  BlogSitemap
 from django.views.generic.base import TemplateView
+from django.urls import re_path
 
 sitemaps = {
     "static": StaticViewSitemap,
@@ -29,15 +30,12 @@ sitemaps = {
 
 }
 urlpatterns = [
-    #path('admin/', admin.site.urls),
+    
+    path('admin/', admin.site.urls),
     #path('url address','view')
-    #path('',include('website.urls')),
-    #path('blog/',include('blog.urls')),
-    #path('accounts/',include('accounts.urls')),
-    path('admin/', TemplateView.as_view(template_name='Coming_Soon.html')),
-    path('', TemplateView.as_view(template_name='Coming_Soon.html')),
-    path('blog/',TemplateView.as_view(template_name='Coming_Soon.html')),
-    path('accounts/',TemplateView.as_view(template_name='Coming_Soon.html')),
+    path('',include('website.urls')),
+    path('blog/',include('blog.urls')),
+    path('accounts/',include('accounts.urls')),
 
     path(
         "sitemap.xml",
@@ -48,7 +46,8 @@ urlpatterns = [
     path('robots.xml', include('robots.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('captcha/', include('captcha.urls')), 
-
 ]
+if settings.MAINTENANCE_MODE:
+        urlpatterns.insert(0, re_path(r'^', TemplateView.as_view(template_name='Coming_Soon.html')))
 urlpatterns+= static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
