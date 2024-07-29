@@ -21,17 +21,24 @@ from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from website.sitemaps import StaticViewSitemap
 from blog.sitemaps import  BlogSitemap
+from django.views.generic.base import TemplateView
+
 sitemaps = {
     "static": StaticViewSitemap,
     'blog': BlogSitemap
 
 }
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    #path('admin/', admin.site.urls),
     #path('url address','view')
-    path('',include('website.urls')),
-    path('blog/',include('blog.urls')),
-    path('accounts/',include('accounts.urls')),
+    #path('',include('website.urls')),
+    #path('blog/',include('blog.urls')),
+    #path('accounts/',include('accounts.urls')),
+    path('admin/', TemplateView.as_view(template_name='Coming_Soon.html')),
+    path('', TemplateView.as_view(template_name='Coming_Soon.html')),
+    path('blog/',TemplateView.as_view(template_name='Coming_Soon.html')),
+    path('accounts/',TemplateView.as_view(template_name='Coming_Soon.html')),
+
     path(
         "sitemap.xml",
         sitemap,
