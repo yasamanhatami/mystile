@@ -171,9 +171,9 @@ EMAIL_HOST_PASSWORD = "oqee xtvj snzq emsl"
 
 MAINTENANCE_MODE = False
 
-STATICFILES_FINDERS = (
+STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # other finders..
-    'compressor.finders.CompressorFinder',
-)
+    'compressor.finders.CompressorFinder'
+]
+COMPRESS_ENABLED = True
