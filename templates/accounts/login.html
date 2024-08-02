@@ -1,4 +1,5 @@
 {% load static %}
+{% load compress %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,12 +12,13 @@
     <title>Login</title>
 
    
-
+    {% compress css %}
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{%static 'css/bootstrap.css'%}">
-
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{%static 'css/signin.css'%}">
+    {% endcompress %}
+
   </head>
 
   <body class="text-center">

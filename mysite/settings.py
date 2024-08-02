@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'robots',
     'taggit',
+    "compressor",
     'website.apps.WebsiteConfig',
     'blog',
     'accounts',
@@ -168,4 +169,11 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'yasamanhatami13871@gmail.com'
 EMAIL_HOST_PASSWORD = "oqee xtvj snzq emsl"
 
-MAINTENANCE_MODE = True
+MAINTENANCE_MODE = False
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
